@@ -19,7 +19,7 @@ export default StyleSheet.create({
         borderRadius: 8,
         paddingVertical: 10,
         alignItems: "center",
-        width:150,
+        width:130,
     },
     scanLink: {
         fontSize: 16,
