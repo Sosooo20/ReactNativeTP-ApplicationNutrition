@@ -131,7 +131,7 @@ export default StyleSheet.create({
     },
 
     resetButtonText: {
-        color: "white",
+        color: "#fff",
         fontWeight: "700",
         fontSize: 16,
     },
