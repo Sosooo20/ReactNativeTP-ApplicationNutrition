@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import {View, Button, Text, Pressable, Image} from "react-native";
+import {View, Text, Pressable, Image} from "react-native";
 import styles from "../../assets/styles/style"
 
-const CameraScreen = () => {
+const Camera = () => {
     const [permission, requestPermission] = useCameraPermissions();
     const [scanned, setScanned] = useState(false);
     const [product, setProduct] = useState(null);
+
 
     useEffect(() => {
         if (permission && !permission?.granted && permission?.canAskAgain){
@@ -14,7 +15,7 @@ const CameraScreen = () => {
         }
     }, [permission]);
 
-    const handleBarCodeScanned = async ({ type, data }) => {
+    const Scan = async ({ data }) => {
         setScanned(true);
 
         const url = `https://fr.openfoodfacts.org/api/v2/product/${data}?fields=product_name,brands,image_url,nutriscore_grade`;
@@ -23,13 +24,15 @@ const CameraScreen = () => {
             const response = await fetch(url);
             const result = await response.json();
 
-            if (result.status === 1) {
+            if (result.product) {
                 setProduct(result.product);
             } else {
                 alert(`Produit inconnu : ${data}`);
+                setScanned(false);
             }
         } catch (error) {
-            console.error("Erreur scan:", error);
+            console.error("Erreur scan:", error.message);
+            setScanned(false);
         }
     };
 
@@ -38,7 +41,7 @@ const CameraScreen = () => {
     }
     return <View style={styles.container}>
     <CameraView style={styles.camera}
-                onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+                onBarcodeScanned={scanned ? undefined : Scan}
                 barcodeScannerSettings={{
                 barcodeTypes: ["ean13", "ean8"],
                        }}
@@ -51,7 +54,7 @@ const CameraScreen = () => {
                         style={styles.imageCamera}
                     />
                 ) : (
-                    <View style={{ width: 120, height: 120, backgroundColor: '#ddd', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={styles.noImage}>
                         <Text style={{ fontSize: 10 }}>Pas d'image</Text>
                     </View>
                 )}
@@ -87,4 +90,4 @@ const CameraScreen = () => {
     </View>
 }
 
-export default CameraScreen;
+export default Camera;

@@ -7,8 +7,14 @@ export default StyleSheet.create({
         backgroundColor: "#f9f9f9",
         flex:1,
     },
-    greeting: {
+    text: {
         fontSize: 20,
+        fontWeight: "600",
+        marginBottom: 10,
+        color: "#333",
+    },
+    text2: {
+        fontSize: 16,
         fontWeight: "600",
         marginBottom: 10,
         color: "#333",
@@ -20,6 +26,10 @@ export default StyleSheet.create({
         paddingVertical: 10,
         alignItems: "center",
         width:130,
+    },
+    signOutText:{
+        color: "#fff",
+        fontWeight: "600"
     },
     scanLink: {
         fontSize: 16,
@@ -52,10 +62,10 @@ export default StyleSheet.create({
         fontWeight: "600",
         fontSize: 16,
     },
-    resultsContainer: {
+    results: {
         marginTop: 20,
     },
-    productCard: {
+    productBloc: {
         backgroundColor: "#fff",
         borderRadius: 12,
         padding: 15,
@@ -139,5 +149,32 @@ export default StyleSheet.create({
         width: 300,
         height: 300,
     },
-
+    noImage:{
+        width: 120,
+        height: 120,
+        backgroundColor: '#ddd',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    pickerContainer: {
+        width: "100%",
+        borderColor: "#919191",
+        borderWidth: 1,
+        borderRadius: 5,
+        marginBottom: 12,
+        overflow: "hidden",
+    },
+    text3: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    subtitle:{
+        marginBottom: 15,
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
+    },
+    type:{
+        fontWeight: 'bold',
+        color: 'blue',
+    }
 });
